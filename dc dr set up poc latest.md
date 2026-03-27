@@ -228,13 +228,13 @@ SELECT pg_is_in_recovery();
 -- Should return: t
 
 SELECT status, sender_host, slot_name FROM pg_stat_wal_receiver;
--- status=streaming, sender_host=10.74.105.8, slot_name=dc_slot
+-- status=streaming, sender_host=10.42.51.81, slot_name=dc_slot
 ```
 
 **On DR:**
 ```sql
 SELECT client_addr, state, replay_lag FROM pg_stat_replication;
--- client_addr=10.74.97.209, state=streaming, replay_lag=00:00:00
+-- client_addr=10.32.51.81, state=streaming, replay_lag=00:00:00
 ```
 
 ---
