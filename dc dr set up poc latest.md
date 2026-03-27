@@ -200,7 +200,7 @@ pg_rewind: Done!
 touch /var/lib/pgsql/15/data/standby.signal
 
 # Give postgres permissions to that standby.dignal file in the data path var/lib/pgsql/15/data/
-chown postgres:postgres standby.dignal
+chown postgres:postgres standby.signal
 
 # Update connection info
 vi /var/lib/pgsql/15/data/postgresql.auto.conf
