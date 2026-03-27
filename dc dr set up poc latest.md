@@ -128,6 +128,8 @@ systemctl status postgresql-15.service
 > If DC has crashed and is unreachable — skip this step.
 
 ---
+>Note: Present scenario is DC is crashed or not reachable now DC is primary (No stand by signal) DR (standby havinf standby signal in data path). if DR is running as standby, standby signal definetly have it..You no need to check whether stand by signal is there or not in DR obviuosly it will be there of sure so now no need to create a standby signal you can directly promote DR using below promte command(however DC is crashed).
+---
 
 ### STEP 2 — Promote DR to Primary
 **On DR:**
