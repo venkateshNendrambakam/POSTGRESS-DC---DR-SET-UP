@@ -3,8 +3,8 @@
 ## Environment
 | Server | IP           | Port | Role (Normal) |
 |--------|--------------|------|---------------|
-| DC     | 10.74.97.209 | 4532 | PRIMARY       |
-| DR     | 10.74.105.8  | 4532 | STANDBY       |
+| DC     | 10.43.51.81 | 4532 | PRIMARY       |
+| DR     | 10.33.51.81  | 4532 | STANDBY       |
 
 ---
 
@@ -337,7 +337,7 @@ vi /var/lib/pgsql/15/data/postgresql.auto.conf
 ```
 Content should be:
 ```ini
-primary_conninfo = 'host=10.74.97.209 port=4532 user=replicator password=very_secure_password'
+primary_conninfo = 'host=10.32.51.81 port=4532 user=replicator password=very_secure_password'
 primary_slot_name = 'dr_slot'
 ```
 
@@ -357,13 +357,13 @@ SELECT pg_is_in_recovery();
 -- Should return: t
 
 SELECT status, sender_host, slot_name FROM pg_stat_wal_receiver;
--- status=streaming, sender_host=10.74.97.209, slot_name=dr_slot
+-- status=streaming, sender_host=10.32.51.81, slot_name=dr_slot
 ```
 
 **On DC:**
 ```sql
 SELECT client_addr, state, replay_lag FROM pg_stat_replication;
--- client_addr=10.74.105.8, state=streaming, replay_lag=00:00:00
+-- client_addr=10.42.51.81, state=streaming, replay_lag=00:00:00
 ```
 
 ---
@@ -399,5 +399,5 @@ rm -rf /var/lib/pgsql/15/data/*
 pg_basebackup -h <PRIMARY_IP> -p 4532 -U replicator \
   -D /var/lib/pgsql/15/data -P -R -X stream -S <slot_name>
 ```
-- Failover:   `<PRIMARY_IP>=10.74.105.8`,  `<slot_name>=dc_slot`
-- Switchback: `<PRIMARY_IP>=10.74.97.209`, `<slot_name>=dr_slot`
+- Failover:   `<PRIMARY_IP>=10.42.51.81`,  `<slot_name>=dc_slot`
+- Switchback: `<PRIMARY_IP>=10.32.51.81`, `<slot_name>=dr_slot`
