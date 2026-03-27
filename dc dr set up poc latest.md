@@ -145,6 +145,9 @@ server promoted
 
 ---
 > Note 1: After promoting DR to primary the application can run immediatly on DR without pg_rewind or pg_basebackup, but DC "MUST NOT BE STARTED" untill its properlly synchronized to avoid split brain (If DC is started after dr is promoted without synchronization, both acts as primary, causes split brain an data inconsistency, which is dangerous)
+---
+
+---
 > Note 2: Once you promoted DR then standby.signal file may or may not be deleted but it loses its significance because the server is no longer in standby mode
 
 ---
