@@ -270,7 +270,7 @@ SELECT pg_is_in_recovery();
 ---
 
 ### STEP 1 — Promote DC to Primary
-**On DC** (do NOT stop PostgreSQL before this — promote runs on a running server):
+**On DC** (do NOT stop PostgreSQL before this — promote command workd and runs only on a running server):
 ```bash
 su - postgres
 /usr/pgsql-15/bin/pg_ctl promote -D /var/lib/pgsql/15/data
