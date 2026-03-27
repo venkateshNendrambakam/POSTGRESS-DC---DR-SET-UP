@@ -3,8 +3,8 @@
 ## Environment
 | Server | IP           | Port | Role (Normal) |
 |--------|--------------|------|---------------|
-| DC     | 10.43.51.81 | 4532 | PRIMARY       |
-| DR     | 10.33.51.81  | 4532 | STANDBY       |
+| DC     | 10.32.51.81 | 4532 | PRIMARY       |
+| DR     | 10.42.51.81  | 4532 | STANDBY       |
 
 ---
 
