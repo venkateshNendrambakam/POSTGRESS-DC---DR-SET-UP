@@ -152,6 +152,9 @@ SELECT pg_is_in_recovery();
 ```
 
 ---
+> Note: For testing this poc lets add some records in any test table in DR, so that data difference will be there in DC and DR so that after hitting the rewind command you can find some sync percenatge.
+
+---
 
 ### STEP 4 — Run pg_rewind on DC
 **Everything below is on DC:**
