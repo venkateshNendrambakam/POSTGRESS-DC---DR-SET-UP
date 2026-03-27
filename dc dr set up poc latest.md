@@ -167,7 +167,7 @@ SELECT pg_is_in_recovery();
 
 ---
 **important point:**
-### check all the files permission in data path /var/lib/pgsql/15/data (its should be of postgres) .If any one is of the file having other permission then entire data will get crashed after rewind command
+### check all the files permission in data path /var/lib/pgsql/15/data (its should be of postgres) .If any one is of the file having other permission then entire data will get crashed after rewind command, which is VERY DANGEROUS.If in case Rewind command failed then we need to perform pg_basebackup activity. 
 ---
 
 ### STEP 4 — Run pg_rewind on DC
