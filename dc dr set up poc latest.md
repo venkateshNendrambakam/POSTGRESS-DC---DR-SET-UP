@@ -155,6 +155,9 @@ SELECT pg_is_in_recovery();
 > Note: For testing this poc lets add some records in any test table in DR, so that data difference will be there in DC and DR so that after hitting the rewind command you can find some sync percenatge.
 
 ---
+---
+>important point: check all the files permission in data path (its should be of postgres) .If any one is of the file having other permission then entire data will get crashed after rewind command
+---
 
 ### STEP 4 — Run pg_rewind on DC
 **Everything below is on DC:**
@@ -290,12 +293,16 @@ systemctl status postgresql-15.service
 ### STEP 4 — Run pg_rewind on DR
 **Everything below is on DR:**
 
+---
+>important point: check all the files permission in data path (its should be of postgres) .If any one is of the file having other permission then entire data will get crashed after rewind command
+---
+
 ```bash
 # Switch to postgres user
 su - postgres
 
 # Run pg_rewind
-### important point: check all the files permission in data path (its should be of postgres) .If any one is of the file having other permission then entire data will get crashed after rewind command
+
 pg_rewind \
   --target-pgdata=/var/lib/pgsql/15/data \
   --source-server="host=10.32.51.81 port=4532 user=replicator password=very_secure_password dbname=postgres" \
