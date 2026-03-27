@@ -164,7 +164,6 @@ SELECT pg_is_in_recovery();
 > Note: For testing this poc lets add some records in any test table in DR, so that data difference will be there in DC and DR so that after hitting the rewind command you can find some sync percenatge.
 
 ---
----
 >important point: check all the files permission in data path (its should be of postgres) .If any one is of the file having other permission then entire data will get crashed after rewind command
 ---
 
